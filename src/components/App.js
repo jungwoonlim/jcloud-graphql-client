@@ -1,8 +1,14 @@
+import React from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Home from "../routers/Home";
+import Detail from "../routers/Detail";
+
 function App() {
   return (
-    <div className="App">
-      <h1>react init</h1>
-    </div>
+    <Router>
+      <Route exact path="/" component={Home} />
+      <Route exact path="/:id" component={Detail} />
+    </Router>
   );
 }
 
