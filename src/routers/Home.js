@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Movie from "../components/Movie";
 
 const GET_MOVIES = gql`
-  query data {
+  query getMovies {
     movies {
       id
       medium_cover_image

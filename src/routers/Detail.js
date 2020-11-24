@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 import { gql, useQuery } from "@apollo/client";
 
 const GET_MOVIE = gql`
-  query getMovie($id: Int!) {
-    movie(id: $id) {
+  query getMovie($intId: Int!) {
+    movie(id: $intId) {
       id
       title
       medium_cover_image
@@ -15,14 +15,13 @@ const GET_MOVIE = gql`
 
 const Detail = () => {
   const { id } = useParams();
-  const { loading, data } = useQuery(GET_MOVIE, {
-    variables: { id },
+  const intId = parseInt(id);
+  const { loading, error, data } = useQuery(GET_MOVIE, {
+    variables: { intId },
   });
 
-  console.log(data);
-
   if (loading) return <p>Loading....</p>;
-  //   if (error) return <p>Error...:(</p>;
+  if (error) return <p>Error...:(</p>;
 
   if (data && data.movie) {
     return data.movie.title;
