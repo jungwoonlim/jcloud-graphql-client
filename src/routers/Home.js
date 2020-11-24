@@ -2,6 +2,8 @@ import { gql, useQuery } from "@apollo/client";
 import styled from "styled-components";
 import Movie from "../components/Movie";
 
+// gql
+
 const GET_MOVIES = gql`
   query getMovies {
     movies {
@@ -10,6 +12,8 @@ const GET_MOVIES = gql`
     }
   }
 `;
+
+// style
 
 const Container = styled.div`
   display: flex;
@@ -46,6 +50,17 @@ const Loading = styled.div`
   margin-top: 10px;
 `;
 
+const Movies = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 25px;
+  width: 60%;
+  position: relative;
+  top: -50px;
+`;
+
+// code
+
 function Home() {
   const { loading, data } = useQuery(GET_MOVIES);
 
@@ -56,9 +71,13 @@ function Home() {
         <Subtitle>I love GraphQL</Subtitle>
       </Header>
       {loading && <Loading>Loading...</Loading>}
-      {!loading &&
-        data.movies &&
-        data.movies.map((m) => <Movie key={m.id} id={m.id} />)}
+      {!loading && data.movies && (
+        <Movies>
+          {data.movies.map((mData) => (
+            <Movie key={mData.id} id={mData.id} bg={mData.medium_cover_image} />
+          ))}
+        </Movies>
+      )}
     </Container>
   );
 }
