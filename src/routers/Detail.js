@@ -15,12 +15,12 @@ const GET_MOVIE = gql`
       rating
       description_intro
     }
-  }
 
-  # suggestions(id: $id) {
-  #     id
-  #     medium_cover_image
-  #   }
+    suggestions(id: $intId) {
+      id
+      medium_cover_image
+    }
+  }
 `;
 
 // style
