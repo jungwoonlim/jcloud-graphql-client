@@ -71,13 +71,11 @@ function Home() {
         <Subtitle>I love GraphQL</Subtitle>
       </Header>
       {loading && <Loading>Loading...</Loading>}
-      {!loading && data.movies && (
-        <Movies>
-          {data.movies.map((mData) => (
-            <Movie key={mData.id} id={mData.id} bg={mData.medium_cover_image} />
-          ))}
-        </Movies>
-      )}
+      <Movies>
+        {data?.movies?.map((mData) => (
+          <Movie key={mData.id} id={mData.id} bg={mData.medium_cover_image} />
+        ))}
+      </Movies>
     </Container>
   );
 }
